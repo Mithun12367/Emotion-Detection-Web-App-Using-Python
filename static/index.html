@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <header>
+        <div class="logo">Self.<span class="highlight">AI</span></div>
+        <nav>
+            <button id="mode-webcam" class="active">Live Webcam</button>
+            <button id="mode-upload">Upload Text/Image</button> <!-- Text typo fix: Upload Image -->
+        </nav>
+    </header>
+
+    <main>
+        <section id="webcam-section" class="active-section">
+            <div class="video-container">
+                <video id="video" autoplay muted playsinline></video>
+                <canvas id="overlay"></canvas>
+                <div class="scan-line"></div>
+            </div>
+            <div class="controls">
+                <button id="start-camera" class="primary-btn">Start Recognition</button>
+                <button id="stop-camera" class="secondary-btn" disabled>Stop</button>
+            </div>
+        </section>
+
+        <section id="upload-section">
+            <div class="upload-container" id="drop-zone">
+                <div class="upload-icon">📁</div>
+                <h3>Drag & Drop or Click to Upload</h3>
+                <p>Supports JPG, PNG (Max 5MB)</p>
+                <input type="file" id="file-input" accept="image/*" hidden>
+            </div>
+            <div id="image-preview-container" class="hidden">
+                <img id="image-preview" src="" alt="Uploaded Image">
+                <canvas id="image-overlay"></canvas>
+            </div>
+        </section>
+        
+        <aside class="results-panel">
+            <h2>Live Analysis</h2>
+            <div id="emotion-results">
+                <div class="emotion-item">
+                    <span class="label">Dominant Emotion</span>
+                    <span class="value" id="dominant-emotion">--</span>
+                </div>
+                <div class="emotion-item">
+                    <span class="label">Confidence</span>
+                    <div class="progress-bar">
+                        <div class="fill" id="confidence-bar" style="width: 0%"></div>
+                    </div>
+                    <span class="value-text" id="confidence-text">0%</span>
+                </div>
+            </div>
+            <div class="log-container">
+                <h3>History</h3>
+                <ul id="log-list">
+                    <!-- Logs go here -->
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
