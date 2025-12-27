@@ -159,6 +159,23 @@ const imagePreview = document.getElementById('image-preview');
 const imageOverlay = document.getElementById('image-overlay');
 const previewContainer = document.getElementById('image-preview-container');
 
+const changeImageBtn = document.getElementById('change-image-btn');
+
+changeImageBtn.addEventListener('click', () => {
+    previewContainer.classList.add('hidden');
+    dropZone.style.display = 'block';
+    fileInput.value = '';
+    imagePreview.src = '';
+    const ctxImg = imageOverlay.getContext('2d');
+    ctxImg.clearRect(0, 0, imageOverlay.width, imageOverlay.height);
+    document.getElementById('upload-loader').classList.add('hidden'); // Ensure loader is hidden
+
+    // Reset UI results
+    emotionLabel.innerText = "--";
+    confidenceBar.style.width = '0%';
+    confidenceText.innerText = '0%';
+});
+
 dropZone.addEventListener('click', () => fileInput.click());
 
 fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
@@ -205,12 +222,17 @@ async function handleFile(file) {
     const formData = new FormData();
     formData.append('file', file);
 
+    const loader = document.getElementById('upload-loader');
+    loader.classList.remove('hidden'); // Show loader
+
     try {
         const response = await fetch('/predict-image', {
             method: 'POST',
             body: formData
         });
         const result = await response.json();
+
+        loader.classList.add('hidden'); // Hide loader
 
         // Draw on image overlay
         const ctxImg = imageOverlay.getContext('2d');

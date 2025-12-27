@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="background-glow"></div>
-    
+
     <header>
         <div class="logo">Self.<span class="highlight">AI</span></div>
         <nav>
@@ -43,9 +45,17 @@
             <div id="image-preview-container" class="hidden">
                 <img id="image-preview" src="" alt="Uploaded Image">
                 <canvas id="image-overlay"></canvas>
+                <div id="upload-loader" class="loader-overlay hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing...</p>
+                </div>
+                <button id="change-image-btn" class="secondary-btn"
+                    style="position: absolute; top: 10px; right: 10px; background: rgba(15, 23, 42, 0.9); z-index: 100; pointer-events: auto; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);">
+                    Change Image
+                </button>
             </div>
         </section>
-        
+
         <aside class="results-panel">
             <h2>Live Analysis</h2>
             <div id="emotion-results">
@@ -72,4 +82,5 @@
 
     <script src="/static/script.js"></script>
 </body>
+
 </html>

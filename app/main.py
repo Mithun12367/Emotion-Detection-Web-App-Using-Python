@@ -55,7 +55,8 @@ async def predict_image(file: UploadFile = File(...)):
 
         return JSONResponse(content={"faces": results})
     except Exception as e:
-        print(f"Error processing image: {e}")
+        import sys
+        print(f"Error processing image: {e}", file=sys.stderr)
         raise HTTPException(status_code=500, detail=str(e))
 
 class FrameData(dict):
